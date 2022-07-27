@@ -60,8 +60,10 @@ class PostController extends Controller
         $newPost->public = isset($data['public']);
         $newPost->save();
 
-        $tag = Tag::find($data['tag_id']);
-        $newPost->tags()->attach($tag);
+        // se ci sono dei tags associati, li associo al post appena creato
+        if(isset($data['tag_id'])) {
+            $newPost->tags()->sync($data['tag_id']);
+        }
         
 
         return redirect()->route('admin.posts.show', $newPost->id);
@@ -88,7 +90,12 @@ class PostController extends Controller
     {
         $tags = Tag::all();
         $categories = Category::all();
-        return view('admin.posts.edit', compact('post', 'categories', 'tags'));
+
+        $postTags = $post->tags->map(function ($tag) {
+            return $tag->id;
+        })->toArray();
+
+        return view('admin.posts.edit', compact('post', 'categories', 'tags', 'postTags'));
     }
 
     /**
@@ -105,6 +112,7 @@ class PostController extends Controller
             'content' => 'required|max:65535|string',
             'public' => 'sometimes|accepted',
             'category_id' => 'exists:categories,id|nullable',
+            'tag_id' => 'exists:tags,id|nullable',
         ]);
 
         $data = $request->all();
@@ -115,8 +123,10 @@ class PostController extends Controller
         $post->public = isset($data['public']);
         $post->save();
 
-        $tag = Tag::find($data['tag_id']);
-        $post->tags()->sync($tag);
+        //Se sono settati dei tag allora vengono aggiunti, sennò non viene aggiunto nulla
+        $tags = isset($data['tag_id']) ? $data['tag_id'] : [];
+
+        $post->tags()->sync($tags);
 
         return redirect()->route('admin.posts.show', $post->id);
     }

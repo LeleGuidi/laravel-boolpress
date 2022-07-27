@@ -14,8 +14,10 @@ export default {
 
 <style lang="scss">
 footer {
+    height: 2.5rem;
     .container {
         text-align: center;
+        padding-top: 1.875rem;
     }
 }
 </style>

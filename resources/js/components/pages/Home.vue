@@ -1,41 +1,42 @@
 <template>
-    <section class="posts">
+    <section class="home">
         <div class="container">
             <div class="row">
-                <div class="col" v-for="post in posts" :key="post.slug">
-                    <BaseCard :title="post.title" :content="post.content" :slug="post.slug"/>
-                </div>
+                <h1>Benvenuto sul mio blog</h1>
+                <p>utilizza la barra di navigazione qua in alto per vedere i posts o altro!</p>
+                <span>Questa è la HOME</span>
             </div>
         </div>
     </section>
 </template>
 
 <script>
-import BaseCard from '../small_commons/BaseCard.vue';
+
 export default {
     name: 'Home',
-    components: {BaseCard},
-    data() {
-        return {
-            posts: [],
-        }
-    },
-    created() {
-        axios.get('api/posts')
-        .then((response) => {
-            this.posts = response.data;
-        })
-        .catch((e) => {
-            console.log(e);
-        });
-    },
 }
 </script>
 
 <style lang="scss">
-section.posts {
-    .row {
-        gap: .625rem;
+section.home {
+    .row{
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-transform: uppercase;
+
+        h1 {
+            color: rgb(125, 125, 125);
+            font-size: 4.375rem;
+        }
+
+        p {
+            font-size: 1.875rem;
+        }
+
+        span {
+            font-size: 1.75rem;
+        }
     }
 }
 </style>

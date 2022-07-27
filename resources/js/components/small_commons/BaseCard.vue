@@ -4,7 +4,7 @@
         <div class="content">
             {{content}}
         </div>
-        <router-link>Dettagli</router-link>
+        <router-link :to="{name: 'single-post', params: {slug: slug}}">Dettagli</router-link>
     </div>
 </template>
 
@@ -29,5 +29,10 @@ export default {
 .card {
     background-color: lightgray;
     border-radius: .625rem;
+    padding: .625rem;
+
+    h4 {
+        text-transform: uppercase;
+    }
 }
 </style>

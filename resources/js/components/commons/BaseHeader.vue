@@ -8,7 +8,8 @@
                 <div>
                     <nav class="header_navbar">
                         <ul class="navbar-nav">
-                            <li><router-link class="link" :to="{name: 'home'}">Posts</router-link></li>
+                            <li><router-link class="link" :to="{name: 'home'}">Home</router-link></li>
+                            <li><router-link class="link" :to="{name: 'posts'}">Posts</router-link></li>
                             <li><router-link class="link" :to="{name: 'about-us'}">Chi siamo</router-link></li>
                             <li><a class="link" href="admin/home">Area riservata</a></li>
                         </ul>
@@ -27,6 +28,10 @@ export default {
 
 <style lang="scss">
 header {
+    width: 100%;
+    background-color: black;
+    color: white;
+
     .row {
         justify-content: space-between;
         align-items: center;
@@ -42,7 +47,7 @@ header {
         font-size: 1.25rem;
     }
     .link {
-        color: black;
+        color: inherit;
         text-decoration: none;
         text-transform: uppercase;
     }

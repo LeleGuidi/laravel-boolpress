@@ -4,7 +4,9 @@ import VueRouter from "vue-router";
 Vue.use(VueRouter);
 
 import Home from "./components/pages/Home";
+import Posts from "./components/pages/Posts";
 import AboutUs from "./components/pages/AboutUs.vue";
+import SinglePost from "./components/pages/SinglePost";
 import NotFound from "./components/pages/404NotFound.vue";
 
 const router = new VueRouter({
@@ -16,9 +18,19 @@ const router = new VueRouter({
             component: Home
         },
         {
+            path: "/posts",
+            name: "posts",
+            component: Posts
+        },
+        {
             path:"/chi-siamo",
             name: "about-us",
             component: AboutUs
+        },
+        {
+            path:"/post/:slug",
+            name: "single-post",
+            component: SinglePost
         },
         {
             path:"/*",
