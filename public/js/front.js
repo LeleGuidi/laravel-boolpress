@@ -2392,7 +2392,7 @@ var render = function render() {
     staticClass: "content"
   }, [_c("p", [_vm._v(_vm._s(_vm.post.content))])]), _vm._v(" "), _c("div", {
     staticClass: "details"
-  }, [_c("p", [_c("span", [_vm._v("Postato il:")]), _vm._v(" " + _vm._s(_vm.post.updated_at) + "\n                ")]), _vm._v(" "), _c("p"), _vm._v(" "), _c("span", [_vm._v("Categoria:")]), _vm._v(" " + _vm._s(_vm.post.categories.name) + "\n            ")])])])]);
+  }, [_c("p", [_c("span", [_vm._v("Postato il:")]), _vm._v(" " + _vm._s(_vm.post.updated_at) + "\n                ")]), _vm._v(" "), _c("p"), _vm._v(" "), _c("span", [_vm._v("Categoria:")]), _vm._v(" " + _vm._s(_vm.post.category_id) + "\n            ")])])])]);
 };
 
 var staticRenderFns = [];

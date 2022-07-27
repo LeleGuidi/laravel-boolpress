@@ -14,7 +14,7 @@
                     </p>
                     <p>
                     </p>
-                    <span>Categoria:</span> {{post.categories.name}}
+                    <span>Categoria:</span> {{post.category_id}}
                 </div>
             </div>
         </div>
