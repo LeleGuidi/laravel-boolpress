@@ -3,18 +3,22 @@
         <div class="container">
             <h1>{{category.name}}</h1>
             <div class="row">
-                
+                <div class="col" v-for="post in category.posts" :key="post.slug">
+                    <BaseCard :title="post.title" :content="post.content" :slug="post.slug"/>
+                </div>
             </div>
         </div>
     </section>
 </template>
 
 <script>
+import BaseCard from "../small_commons/BaseCard.vue"
+
 export default {
+  components: { BaseCard },
     name: 'SingleCategory',
     data() {
         return {
-            post: [],
             category: [],
         }
     },

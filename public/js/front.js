@@ -2061,11 +2061,15 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _small_commons_BaseCard_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../small_commons/BaseCard.vue */ "./resources/js/components/small_commons/BaseCard.vue");
+
 /* harmony default export */ __webpack_exports__["default"] = ({
+  components: {
+    BaseCard: _small_commons_BaseCard_vue__WEBPACK_IMPORTED_MODULE_0__["default"]
+  },
   name: 'SingleCategory',
   data: function data() {
     return {
-      post: [],
       category: []
     };
   },
@@ -2093,7 +2097,9 @@ __webpack_require__.r(__webpack_exports__);
   name: 'SinglePost',
   data: function data() {
     return {
-      post: []
+      post: [],
+      category: [],
+      tags: []
     };
   },
   created: function created() {
@@ -2101,6 +2107,13 @@ __webpack_require__.r(__webpack_exports__);
 
     axios.get("/api/post/".concat(this.$route.params.slug)).then(function (response) {
       _this.post = response.data;
+      _this.category = response.data.category;
+      _this.tags = response.data.tags;
+    })["catch"](function (e) {
+      // redirect alla pagina 404
+      _this.$router.push({
+        name: '404NotFound'
+      });
     });
   }
 });
@@ -2494,7 +2507,18 @@ var render = function render() {
     staticClass: "container"
   }, [_c("h1", [_vm._v(_vm._s(_vm.category.name))]), _vm._v(" "), _c("div", {
     staticClass: "row"
-  })])]);
+  }, _vm._l(_vm.category.posts, function (post) {
+    return _c("div", {
+      key: post.slug,
+      staticClass: "col"
+    }, [_c("BaseCard", {
+      attrs: {
+        title: post.title,
+        content: post.content,
+        slug: post.slug
+      }
+    })], 1);
+  }), 0)])]);
 };
 
 var staticRenderFns = [];
@@ -2526,7 +2550,21 @@ var render = function render() {
     staticClass: "row"
   }, [_c("h1", [_vm._v(_vm._s(_vm.post.title))]), _vm._v(" "), _c("p", [_vm._v(_vm._s(_vm.post.content))]), _vm._v(" "), _c("div", {
     staticClass: "details"
-  }, [_c("p", [_c("span", [_vm._v("Postato il:")]), _vm._v(" " + _vm._s(_vm.post.updated_at) + "\n                ")]), _vm._v(" "), _c("p"), _vm._v(" "), _c("span", [_vm._v("Categoria:")]), _vm._v(" " + _vm._s(_vm.post.category_id) + "\n            ")])])])]);
+  }, [_c("p", [_c("span", [_vm._v("Postato il:")]), _vm._v(" " + _vm._s(_vm.post.updated_at) + "\n                ")]), _vm._v(" "), _vm.post.category ? _c("p", [_c("span", [_vm._v("Categoria:")]), _vm._v(" "), _c("router-link", {
+    staticClass: "link",
+    attrs: {
+      to: {
+        name: "single-category",
+        params: {
+          slug: _vm.category.slug
+        }
+      }
+    }
+  }, [_vm._v(_vm._s(_vm.category.name))])], 1) : _vm._e(), _vm._v(" "), _vm.tags.length > 0 ? _c("p", [_c("span", [_vm._v("Tags:")]), _vm._v(" "), _c("ul", _vm._l(_vm.tags, function (tag) {
+    return _c("li", {
+      key: tag.slug
+    }, [_vm._v("\n                            " + _vm._s(tag.name) + "\n                        ")]);
+  }), 0)]) : _vm._e()])])])]);
 };
 
 var staticRenderFns = [];
@@ -2703,7 +2741,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "section.single_post .row {\n  gap: 1.875rem;\n  flex-direction: column;\n  justify-content: space-between;\n}\nsection.single_post .details {\n  font-size: 1.25rem;\n}\nsection.single_post .details span {\n  font-weight: 900;\n}", ""]);
+exports.push([module.i, "section.single_post .row {\n  gap: 1.875rem;\n  flex-direction: column;\n  justify-content: space-between;\n}\nsection.single_post .details {\n  font-size: 1.5rem;\n}\nsection.single_post .details span {\n  font-weight: 900;\n  font-size: 1.25rem;\n}\nsection.single_post .details ul {\n  list-style: none;\n}", ""]);
 
 // exports
 

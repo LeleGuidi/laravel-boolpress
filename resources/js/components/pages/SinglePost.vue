@@ -8,9 +8,17 @@
                     <p>
                         <span>Postato il:</span> {{post.updated_at}}
                     </p>
-                    <p>
+                    <p v-if="post.category">
+                        <span>Categoria:</span> <router-link class="link" :to="{name: 'single-category', params: {slug: category.slug}}">{{category.name}}</router-link> 
                     </p>
-                    <span>Categoria:</span> {{post.category_id}}
+                    <p v-if="tags.length > 0">
+                        <span>Tags:</span>
+                        <ul>
+                            <li v-for="tag in tags" :key="tag.slug">
+                                {{tag.name}}
+                            </li>
+                        </ul>
+                    </p>
                 </div>
             </div>
         </div>
@@ -23,13 +31,21 @@ export default {
     data() {
         return {
             post: [],
+            category: [],
+            tags: [],
         }
     },
     created() {
         axios.get(`/api/post/${this.$route.params.slug}`)
         .then((response)=>{
             this.post = response.data;
+            this.category = response.data.category;
+            this.tags = response.data.tags;
         })
+        .catch((e) => {
+                // redirect alla pagina 404
+                this.$router.push({name: '404NotFound'});
+            });
     }
 }
 </script>
@@ -42,9 +58,13 @@ section.single_post {
         justify-content: space-between;
     }
     .details {
-        font-size: 1.25rem;
+        font-size: 1.50rem;
         span{
             font-weight: 900;
+            font-size: 1.25rem;
+        }
+        ul {
+            list-style: none;
         }
     }
 }
