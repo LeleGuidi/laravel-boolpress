@@ -10,6 +10,7 @@
                         <ul class="navbar-nav">
                             <li><router-link class="link" :to="{name: 'home'}">Home</router-link></li>
                             <li><router-link class="link" :to="{name: 'posts'}">Posts</router-link></li>
+                            <li><router-link class="link" :to="{name: 'categories'}">Categorie</router-link></li>
                             <li><router-link class="link" :to="{name: 'about-us'}">Chi siamo</router-link></li>
                             <li><a class="link" href="admin/home">Area riservata</a></li>
                         </ul>

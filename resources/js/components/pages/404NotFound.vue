@@ -10,11 +10,5 @@ export default {
 }
 </script>
 <style lang="scss">
-    .not-found {
-        .link {
-            text-transform: uppercase;
-            text-decoration: none;
-            color: black;
-        }
-    }   
+ 
 </style>

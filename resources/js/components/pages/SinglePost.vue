@@ -2,12 +2,8 @@
     <section class="single_post">
         <div class="container">
             <div class="row">
-                <div class="title">
-                    <h1>{{post.title}}</h1>
-                </div>
-                <div class="content">
-                    <p>{{post.content}}</p>
-                </div>
+                <h1>{{post.title}}</h1>
+                <p>{{post.content}}</p>
                 <div class="details">
                     <p>
                         <span>Postato il:</span> {{post.updated_at}}
@@ -45,20 +41,8 @@ section.single_post {
         flex-direction: column;
         justify-content: space-between;
     }
-
-    .title {
-        color: rgb(125, 125, 125);
-        font-size: 4.375rem;
-        text-transform: uppercase;
-    }
-    
-    .content {
-        font-size: 1.875rem;
-    }
-
     .details {
         font-size: 1.25rem;
-
         span{
             font-weight: 900;
         }

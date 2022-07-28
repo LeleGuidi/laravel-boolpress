@@ -24,19 +24,6 @@ section.home {
         align-items: center;
         justify-content: center;
         text-transform: uppercase;
-
-        h1 {
-            color: rgb(125, 125, 125);
-            font-size: 4.375rem;
-        }
-
-        p {
-            font-size: 1.875rem;
-        }
-
-        span {
-            font-size: 1.75rem;
-        }
     }
 }
 </style>

@@ -17,3 +17,7 @@ use Illuminate\Support\Facades\Route;
 Route::get("/posts", "Api\PostController@index");
 // /api/single-post
 Route::get("/post/{slug}", "Api\PostController@show");
+// /api/all-categories
+Route::get("/categories", "Api\CategoryController@index");
+// /api/single-post
+Route::get("/category/{slug}", "Api\CategoryController@show");

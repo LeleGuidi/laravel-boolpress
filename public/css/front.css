@@ -4633,3 +4633,34 @@ template {
   display: none !important;
 }
 
+h1 {
+  color: rgb(125, 125, 125);
+  font-size: 4.375rem;
+}
+
+h4 {
+  text-transform: uppercase;
+}
+
+p {
+  font-size: 1.875rem;
+}
+
+span {
+  font-size: 1.75rem;
+}
+
+section {
+  padding: 3.125rem 0;
+}
+
+.link {
+  color: inherit;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+.row {
+  gap: 0.625rem;
+}
+

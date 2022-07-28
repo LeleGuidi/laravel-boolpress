@@ -11,8 +11,9 @@ class PostController extends Controller
     public function index()
     {
         // $posts = Post::all();
-        $posts = Post::where('public', 1)->get();
+        $posts = Post::where('public', 1)->with('categories', 'tags')->get();
         return response()->json($posts);
+        // return $posts;
     }
 
     public function show($slug)

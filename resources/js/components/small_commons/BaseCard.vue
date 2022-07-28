@@ -30,9 +30,5 @@ export default {
     background-color: lightgray;
     border-radius: .625rem;
     padding: .625rem;
-
-    h4 {
-        text-transform: uppercase;
-    }
 }
 </style>

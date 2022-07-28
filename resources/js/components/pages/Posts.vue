@@ -33,9 +33,4 @@ export default {
 </script>
 
 <style lang="scss">
-section.posts {
-    .row {
-        gap: .625rem;
-    }
-} 
 </style>
