@@ -4,6 +4,9 @@
             <div class="row">
                 <h1>{{post.title}}</h1>
                 <p>{{post.content}}</p>
+                <div class="image">
+                    <img v-if="post.image_path" :src="post.image_path" :alt="post.title">
+                </div>
                 <div class="details">
                     <p>
                         <span>Postato il:</span> {{post.updated_at}}

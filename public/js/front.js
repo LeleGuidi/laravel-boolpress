@@ -2549,6 +2549,13 @@ var render = function render() {
   }, [_c("div", {
     staticClass: "row"
   }, [_c("h1", [_vm._v(_vm._s(_vm.post.title))]), _vm._v(" "), _c("p", [_vm._v(_vm._s(_vm.post.content))]), _vm._v(" "), _c("div", {
+    staticClass: "image"
+  }, [_vm.post.image_path ? _c("img", {
+    attrs: {
+      src: _vm.post.image_path,
+      alt: _vm.post.title
+    }
+  }) : _vm._e()]), _vm._v(" "), _c("div", {
     staticClass: "details"
   }, [_c("p", [_c("span", [_vm._v("Postato il:")]), _vm._v(" " + _vm._s(_vm.post.updated_at) + "\n                ")]), _vm._v(" "), _vm.post.category ? _c("p", [_c("span", [_vm._v("Categoria:")]), _vm._v(" "), _c("router-link", {
     staticClass: "link",

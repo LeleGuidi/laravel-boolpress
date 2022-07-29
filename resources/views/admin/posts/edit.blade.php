@@ -28,10 +28,10 @@
                 <label for="image">Immagine</label>
                 @if ($post->image) 
                     <div class="preview_image">
-                        <img :src="{post.image_path}" :alt="{post.image_path}">
+                        <img src="{{asset("storage/{$post->image}")}}" alt="{{asset("storage/{$post->image}")}}">
                     </div>
                 @endif
-                <input type="file" class="form-control-file @error('image') is invalid @enderror" id="image" name="image" value="{{old('image', $post->image)}}">
+                <input type="file" class="form-control-file @error('image') is invalid @enderror" id="image" name="image" value="{{old('image')}}">
                 @error('image')
                     <div class="alert alert-danger">
                         {{$message}}

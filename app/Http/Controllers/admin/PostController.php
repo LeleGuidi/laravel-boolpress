@@ -62,7 +62,7 @@ class PostController extends Controller
         $newPost->slug = $this->getSlug($data['title']);
         $newPost->public = isset($data['public']);
         if(isset($data['image'])){
-            $newPost->image = Storage::put('uploads', $data['image']);
+            $newPost->image = Storage::disk('public')->put('uploads', $data['image']);
         }
         $newPost->save();
 
@@ -118,6 +118,7 @@ class PostController extends Controller
             'public' => 'sometimes|accepted',
             'category_id' => 'exists:categories,id|nullable',
             'tag_id' => 'exists:tags,id|nullable',
+            'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
 
         $data = $request->all();
@@ -126,6 +127,9 @@ class PostController extends Controller
         }
         $post->fill($data);
         $post->public = isset($data['public']);
+        if(isset($data['image'])){
+            $post->image = Storage::disk('public')->put('uploads', $data['image']);
+        }
         $post->save();
 
         //Se sono settati dei tag allora vengono aggiunti, sennò non viene aggiunto nulla
@@ -145,7 +149,7 @@ class PostController extends Controller
     public function destroy(Post $post)
     {
         if($post->image) {
-            Storage::delete($post->image);
+            Storage::disk('public')->delete('uploads', $post->image);
         }
 
         $post ->delete();

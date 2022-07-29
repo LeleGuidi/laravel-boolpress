@@ -5,6 +5,7 @@
         <h1>{{$post->title}}</h1>
         <div class="card-body">
             {{$post->content}}
+            <img src="{{asset("storage/{$post->image}")}}" alt="">
             <div>
                 <a href="{{route('admin.posts.index')}}"><button class="btn btn-primary mt-5">Torna ai posts</button></a>
             </div>
