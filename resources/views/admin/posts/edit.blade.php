@@ -3,7 +3,7 @@
 @section('content')
     <div class="container">
         <h1>Modifica il post</h1>
-        <form action="{{route('admin.posts.update', $post->id)}}" method="POST">
+        <form action="{{route('admin.posts.update', $post->id)}}" method="POST" enctype="multipart/form-data">
             @csrf
             @method('PUT')
             <div class="form-group">
@@ -19,6 +19,20 @@
                 <label for="content">Contenuto</label>
                 <textarea redquired rows="5" class="form-control @error('content') is invalid @enderror" id="content" name="content">{{old('content', $post->content)}}</textarea>
                 @error('content')
+                    <div class="alert alert-danger">
+                        {{$message}}
+                    </div>
+                @enderror
+            </div>
+            <div class="form-group">
+                <label for="image">Immagine</label>
+                @if ($post->image) 
+                    <div class="preview_image">
+                        <img :src="{post.image_path}" :alt="{post.image_path}">
+                    </div>
+                @endif
+                <input type="file" class="form-control-file @error('image') is invalid @enderror" id="image" name="image" value="{{old('image', $post->image)}}">
+                @error('image')
                     <div class="alert alert-danger">
                         {{$message}}
                     </div>

@@ -2593,6 +2593,7 @@ var render = function render() {
   }, [_c("h4", [_vm._v(_vm._s(_vm.title))]), _vm._v(" "), _c("div", {
     staticClass: "content"
   }, [_vm._v("\n        " + _vm._s(_vm.content) + "\n    ")]), _vm._v(" "), _c("router-link", {
+    staticClass: "link",
     attrs: {
       to: {
         name: "single-post",

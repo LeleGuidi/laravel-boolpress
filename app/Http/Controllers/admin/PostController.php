@@ -4,8 +4,10 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Post;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Storage;
+
+use App\Post;
 use App\Category;
 use App\Tag;
 
@@ -51,6 +53,7 @@ class PostController extends Controller
             'public' => 'sometimes|accepted',
             'category_id' => 'exists:categories,id|nullable', //l'id che arriva dalla select deve esistere nella tabella categories nella colonna id
             'tag_id' => 'exists:tags,id|nullable', //l'id che arriva dalla select deve esistere nella tabella tag nella colonna id
+            'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
 
         $data = $request->all();
@@ -58,13 +61,15 @@ class PostController extends Controller
         $newPost->fill($data);
         $newPost->slug = $this->getSlug($data['title']);
         $newPost->public = isset($data['public']);
+        if(isset($data['image'])){
+            $newPost->image = Storage::put('uploads', $data['image']);
+        }
         $newPost->save();
 
         // se ci sono dei tags associati, li associo al post appena creato
         if(isset($data['tag_id'])) {
             $newPost->tags()->sync($data['tag_id']);
         }
-        
 
         return redirect()->route('admin.posts.show', $newPost->id);
     }
@@ -139,8 +144,12 @@ class PostController extends Controller
      */
     public function destroy(Post $post)
     {
-        $post ->delete();
+        if($post->image) {
+            Storage::delete($post->image);
+        }
 
+        $post ->delete();
+        
         return redirect()->route('admin.posts.index');
     }
 

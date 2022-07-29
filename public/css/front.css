@@ -4655,7 +4655,7 @@ section {
 }
 
 .link {
-  color: inherit;
+  color: red;
   text-decoration: none;
   text-transform: uppercase;
 }

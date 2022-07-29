@@ -4,7 +4,7 @@
         <div class="content">
             {{content}}
         </div>
-        <router-link :to="{name: 'single-post', params: {slug: slug}}">Dettagli</router-link>
+        <router-link class="link" :to="{name: 'single-post', params: {slug: slug}}">Dettagli</router-link>
     </div>
 </template>
 
