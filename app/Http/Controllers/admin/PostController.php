@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Mail;
+use App\Services\PayUService\Exception;
 
 use App\Mail\SendPostEmail;
 use App\Post;
@@ -72,8 +73,14 @@ class PostController extends Controller
         if(isset($data['tag_id'])) {
             $newPost->tags()->sync($data['tag_id']);
         }
-
-        Mail::to('g.lele_1998@hotmail.it')->send(new SendPostEmail($newPost));
+        try {
+            Mail::to('g.lele_1998@hotmail.it')->send(new SendPostEmail($newPost));
+        } catch (\Exception $e) {
+            report($e);
+     
+            return false;
+        }
+        
 
         return redirect()->route('admin.posts.show', $newPost->id);
     }
